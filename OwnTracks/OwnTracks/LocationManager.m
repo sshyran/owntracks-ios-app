@@ -425,25 +425,25 @@ static LocationManager *theInstance = nil;
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     DDLogVerbose(@"didEnterRegion %@", region);
-    
-    if ([region isKindOfClass:[CLCircularRegion class]]) {
-        CLCircularRegion *circular = (CLCircularRegion *)region;
-        DDLogVerbose(@"region lat,lon,rad %f,%f,%f",
-                     circular.center.latitude,
-                     circular.center.longitude,
-                     circular.radius);
-        DDLogVerbose(@"loc lat,lon,acc %f,%f,%f @ %@",
-                     manager.location.coordinate.latitude,
-                     manager.location.coordinate.longitude,
-                     manager.location.horizontalAccuracy,
-                     manager.location.timestamp
-                     );
-        if ([self insideCircularRegion:circular.identifier] || ![circular containsCoordinate:manager.location.coordinate]) {
-            DDLogVerbose(@"didEnterRegion incorrect!");
-            return;
-        }
-    }
-
+//    
+//    if ([region isKindOfClass:[CLCircularRegion class]]) {
+//        CLCircularRegion *circular = (CLCircularRegion *)region;
+//        DDLogVerbose(@"region lat,lon,rad %f,%f,%f",
+//                     circular.center.latitude,
+//                     circular.center.longitude,
+//                     circular.radius);
+//        DDLogVerbose(@"loc lat,lon,acc %f,%f,%f @ %@",
+//                     manager.location.coordinate.latitude,
+//                     manager.location.coordinate.longitude,
+//                     manager.location.horizontalAccuracy,
+//                     manager.location.timestamp
+//                     );
+//        if ([self insideCircularRegion:circular.identifier] || ![circular containsCoordinate:manager.location.coordinate]) {
+//            DDLogVerbose(@"didEnterRegion incorrect!");
+//            return;
+//        }
+//    }
+//
     if (![self removeHoldDown:region]) {
         [self.delegate regionEvent:region enter:YES];
     }
@@ -452,25 +452,25 @@ static LocationManager *theInstance = nil;
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     DDLogVerbose(@"didExitRegion %@", region);
-    
-    if ([region isKindOfClass:[CLCircularRegion class]]) {
-        CLCircularRegion *circular = (CLCircularRegion *)region;
-        DDLogVerbose(@"region lat,lon,rad %f,%f,%f",
-                     circular.center.latitude,
-                     circular.center.longitude,
-                     circular.radius);
-        DDLogVerbose(@"loc lat,lon,acc %f,%f,%f @ %@",
-                     manager.location.coordinate.latitude,
-                     manager.location.coordinate.longitude,
-                     manager.location.horizontalAccuracy,
-                     manager.location.timestamp
-                     );
-        if (![self insideCircularRegion:circular.identifier] || [circular containsCoordinate:manager.location.coordinate]) {
-            DDLogVerbose(@"didExitRegion incorrect!");
-            return;
-        }
-    }
-
+//    
+//    if ([region isKindOfClass:[CLCircularRegion class]]) {
+//        CLCircularRegion *circular = (CLCircularRegion *)region;
+//        DDLogVerbose(@"region lat,lon,rad %f,%f,%f",
+//                     circular.center.latitude,
+//                     circular.center.longitude,
+//                     circular.radius);
+//        DDLogVerbose(@"loc lat,lon,acc %f,%f,%f @ %@",
+//                     manager.location.coordinate.latitude,
+//                     manager.location.coordinate.longitude,
+//                     manager.location.horizontalAccuracy,
+//                     manager.location.timestamp
+//                     );
+//        if (![self insideCircularRegion:circular.identifier] || [circular containsCoordinate:manager.location.coordinate]) {
+//            DDLogVerbose(@"didExitRegion incorrect!");
+//            return;
+//        }
+//    }
+//
     if ([region.identifier hasPrefix:@"-"]) {
                 [self removeHoldDown:region];
         [self.pendingRegionEvents addObject:[PendingRegionEvent holdDown:region for:3.0 to:self]];

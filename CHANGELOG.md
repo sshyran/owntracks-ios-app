@@ -1,6 +1,13 @@
 OnTracks iOS App Release Notes
 ===================================
 
+## OwnTracks 8.3.3
+>Release date: 2015-11-07 for app store
+
+Bugfix release
+
+* [FIX] Unreliable enter/exit event after latest iOS release closes #351
+
 ## OwnTracks 8.3.2
 >Release date: 2015-10-19 for alpha testers and app store
 
